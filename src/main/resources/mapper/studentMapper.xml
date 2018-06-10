@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example2.dao.StudentDAO">
+    <resultMap type="com.example2.entity.Student"
+               id="BaseMap">
+        <!--主键-->
+        <id column="sno" property="sno"/>
+        <result column="sname" property="sname"/>
+        <!--column 表字段，property 实体类属性-->
+        <result column="ssex" property="ssex"/>
+        <result column="sage" property="sage"/>
+        <result column="sdept" property="sdept"/>
+        <result column="pwd" property="pwd"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseMap">
+        select * from student
+    </select>
+
+    <select id="findByName" resultType="com.example2.entity.Student"
+            parameterType="java.lang.String">
+        select * from student where sname = #{sname}
+    </select>
+
+    <select id="selectStudent" resultType="com.example2.entity.Student"
+            parameterType="com.example2.entity.Student">
+        SELECT * from student where sname = #{sname}
+        and pwd = #{pwd}
+    </select>
+
+</mapper>
